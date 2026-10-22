@@ -1,0 +1,74 @@
+:root{
+  /* Neutral, re-themeable palette — a kid's CLAUDE.md re-skins these. game.js reads
+     --hero/--arena/--grid/--xp/--shot/--ink to paint the canvas. */
+  --bg:#0d1018; --arena:#161a24; --grid:#222838;
+  --hero:#6fd3ff; --shot:#bdecff; --xp:#ffcf5c; --hp:#ff5d6c;
+  --ink:#e8edf5; --muted:#8b95a7; --panel:#1c2230; --accent:#6fd3ff;
+}
+*{ box-sizing:border-box }
+body{ margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:var(--bg); color:var(--ink); }
+.app{ max-width:760px; margin:0 auto; padding:16px; display:flex; flex-direction:column; gap:10px }
+
+/* ===== HUD ===== */
+.hud{ display:flex; align-items:center; justify-content:space-between; gap:12px }
+.hud-left,.hud-right{ display:flex; align-items:center; gap:10px }
+.hp{ width:180px; height:16px; background:#2a2030; border-radius:10px; overflow:hidden; border:2px solid #3a2a38 }
+.hp-fill{ height:100%; width:100%; background:var(--hp); transition:width .15s }
+.hearts{ font-size:16px; letter-spacing:1px; line-height:1 }
+.level{ font-weight:700; font-size:14px; color:var(--accent); font-variant-numeric:tabular-nums }
+.timer{ font-size:24px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:.04em }
+.score-label{ font-size:11px; color:var(--muted); letter-spacing:.1em }
+.score{ font-size:18px; font-weight:700; font-variant-numeric:tabular-nums }
+.iconbtn{ background:var(--panel); border:2px solid #2b3344; color:var(--ink); border-radius:10px;
+  width:38px; height:34px; font-size:16px; cursor:pointer }
+.iconbtn:hover{ border-color:var(--accent) }
+.autobtn{ background:var(--panel); border:2px solid #2b3344; color:var(--muted); border-radius:10px;
+  height:34px; padding:0 12px; font-size:13px; font-weight:800; letter-spacing:.06em; cursor:pointer }
+.autobtn.on{ background:var(--accent); border-color:var(--accent); color:#08121a }
+
+/* ===== XP bar ===== */
+.xp{ height:8px; background:#23262f; border-radius:6px; overflow:hidden }
+.xp-fill{ height:100%; width:0%; background:var(--xp); transition:width .15s }
+
+/* ===== Boss HP bar (red; only shows while a boss is alive) ===== */
+.boss{ display:flex; align-items:center; gap:10px }
+.boss[hidden]{ display:none }
+.boss-label{ font-weight:800; font-size:14px; color:#ff5d6c; letter-spacing:.08em }
+.boss-track{ flex:1; height:14px; background:#2a1a1e; border-radius:8px; overflow:hidden; border:2px solid #4a262c }
+.boss-fill{ height:100%; width:100%; background:#e0243c; transition:width .15s }
+
+/* ===== Stage / canvas ===== */
+.stage{ position:relative; border-radius:16px; overflow:hidden; border:2px solid #232a38;
+  line-height:0; box-shadow:0 12px 40px rgba(0,0,0,.45) }
+#arena{ display:block; width:100%; height:auto; background:var(--arena) }
+
+/* ===== Overlays ===== */
+.overlay{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; gap:14px; text-align:center; line-height:1.3;
+  background:rgba(10,13,20,.82); backdrop-filter:blur(2px); padding:20px }
+.overlay[hidden]{ display:none }
+.overlay h1{ margin:0; font-size:40px; font-weight:900; letter-spacing:.06em }
+.overlay h2{ margin:0; font-size:24px; font-weight:800; letter-spacing:.04em }
+.tagline{ margin:0; max-width:34ch; color:var(--muted) }
+.best,.survived{ margin:0; color:var(--muted); font-variant-numeric:tabular-nums }
+.big-btn{ background:var(--accent); color:#08121a; border:none; border-radius:14px;
+  padding:14px 30px; font-size:20px; font-weight:800; cursor:pointer; box-shadow:0 6px 0 #3f9ec4 }
+.big-btn:hover{ filter:brightness(1.06) }
+.big-btn:active{ transform:translateY(3px); box-shadow:0 3px 0 #3f9ec4 }
+
+/* ===== Upgrade cards ===== */
+.cards{ display:flex; gap:14px; flex-wrap:wrap; justify-content:center }
+.card{ width:170px; min-height:120px; background:var(--panel); border:2px solid #2b3344;
+  border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:8px; cursor:pointer;
+  text-align:left; color:var(--ink); transition:transform .1s, border-color .1s }
+.card:hover{ transform:translateY(-4px); border-color:var(--accent) }
+.card-name{ font-size:18px; font-weight:800; color:var(--accent) }
+.card-flavor{ font-size:13px; color:var(--muted) }
+
+/* ===== Tips footer ===== */
+.tips{ text-align:center; color:var(--muted); font-size:13px }
+
+@media (max-width:520px){
+  .hp{ width:120px } .overlay h1{ font-size:30px } .card{ width:140px }
+}

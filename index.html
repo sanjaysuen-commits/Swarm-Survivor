@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Swarm Survivor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="hud">
+      <div class="hud-left">
+        <div class="hp"><div class="hp-fill" id="hp-fill"></div></div>
+        <span class="hearts" id="hearts">❤️❤️❤️</span>
+        <span class="level" id="level">Lv 1</span>
+      </div>
+      <div class="hud-mid"><span class="timer" id="timer">0:00</span></div>
+      <div class="hud-right">
+        <span class="score-label">SCORE</span><span class="score" id="score">0</span>
+        <button id="auto" class="autobtn" aria-pressed="false" aria-label="Toggle auto-fire">AUTO</button>
+        <button id="mute" class="iconbtn" aria-pressed="false" aria-label="Toggle sound">🔊</button>
+      </div>
+    </header>
+
+    <div class="xp"><div class="xp-fill" id="xp-fill"></div></div>
+
+    <div class="boss" id="boss-bar" hidden>
+      <span class="boss-label">👹 BOSS</span>
+      <div class="boss-track"><div class="boss-fill" id="boss-fill"></div></div>
+    </div>
+
+    <section class="stage">
+      <canvas id="arena" width="720" height="480" aria-label="Swarm Survivor arena"></canvas>
+
+      <div class="overlay" id="start-screen">
+        <h1>Swarm Survivor</h1>
+        <p class="tagline">You stay in the center. Aim with your mouse, right-click to shoot. Chips fly to you.</p>
+        <button class="big-btn" id="start-btn">▶ PLAY</button>
+        <p class="best">Best run: <span id="start-best">0:00</span></p>
+      </div>
+
+      <div class="overlay" id="levelup" hidden>
+        <h2>LEVEL UP — pick a power</h2>
+        <div class="cards" id="cards"></div>
+      </div>
+
+      <div class="overlay" id="gameover" hidden>
+        <h2>Down!</h2>
+        <p class="survived">You survived <span id="over-time">0:00</span></p>
+        <p class="best">Best run: <span id="over-best">0:00</span></p>
+        <button class="big-btn" id="restart-btn">↻ PLAY AGAIN</button>
+      </div>
+    </section>
+
+    <footer class="tips">Kill the swarm → grab the chips → level up → pick a power. How long can you last?</footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
